@@ -166,16 +166,16 @@ python-versions = "*"
 
 [[package]]
 name = "django"
-version = "4.1.13"
+version = "4.2.13"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
 python-versions = ">=3.8"
 
 [package.dependencies]
-asgiref = ">=3.5.2,<4"
+asgiref = ">=3.6.0,<4"
 "backports.zoneinfo" = {version = "*", markers = "python_version < \"3.9\""}
-sqlparse = ">=0.2.2"
+sqlparse = ">=0.3.1"
 tzdata = {version = "*", markers = "sys_platform == \"win32\""}
 
 [package.extras]
@@ -776,7 +776,7 @@ test = ["pytest"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8, <4.0"
-content-hash = "c4bce2458d5d94fb16b529f93c3a40adbcb6784f16c0d23f2a02305944a8e4fc"
+content-hash = "c22c6f0092923c8799962f12cc506c63761eed550fedfd3df24b65c45f287c14"
 
 [metadata.files]
 appdirs = []
