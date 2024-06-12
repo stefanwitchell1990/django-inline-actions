@@ -15,7 +15,7 @@ def test_changetitle_action(admin_client, mocker, article):
     article_url = reverse('admin:blog_article_changelist')
     changeview = admin_client.get(article_url)
 
-    changetitle_view = changeview.form.submit(name=action_name)
+    changetitle_view = changeview.forms[1].submit(name=action_name)
     assert changetitle_view.status_code == 200
 
     # action should be available as hidden field
