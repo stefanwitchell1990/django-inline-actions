@@ -10,7 +10,8 @@ django-inline-actions adds actions to each row of the ModelAdmin or InlineModelA
 
 ## Requirements
 
-* Python 3.6.1 or newer
+* Python 3.8 or newer
+* Django 4.0, 4.1 or 4.2
 
 ## Screenshot
 
@@ -229,7 +230,6 @@ If a staff user has clicked any inline action accidentally, they can safely clic
 
 The current implementation for using intermediate forms involves some manual handling.
 This will be simplified in the next major release!
-
 
 In order to have an intermediate form, you must add some information about the triggered action.
 `django-inline-actions` provides a handy templatetag `render_inline_action_fields`,
