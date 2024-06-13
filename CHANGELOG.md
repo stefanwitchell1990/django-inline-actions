@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### More Changes - 2024-06-13
+
+* added support for Django 4.2
+
 ### Changed
 
 * removed RemovedInDjango40Warning warning message, thanks to @Ivan-Feofanov

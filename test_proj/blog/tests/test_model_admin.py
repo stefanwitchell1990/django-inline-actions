@@ -87,7 +87,7 @@ def test_actions_rendered(admin_client, article, action):
     input_name = '_action__articleadmin__admin__{}__blog__article__{}'.format(
         action, article.pk
     )
-    assert input_name in dict(changelist.form.fields)
+    assert input_name in dict(changelist.forms['changelist-form'].fields)
 
 
 def test_publish_action(admin_client, mocker, article):
@@ -112,24 +112,24 @@ def test_publish_action(admin_client, mocker, article):
     # open changelist
     changelist = admin_client.get(article_url)
     assert UnPublishActionsMixin.get_inline_actions.call_count > 0
-    assert publish_input_name in dict(changelist.form.fields)
+    assert publish_input_name in dict(changelist.forms['changelist-form'].fields)
 
     # execute and test publish action
-    changelist = changelist.form.submit(name=publish_input_name).follow()
+    changelist = changelist.forms['changelist-form'].submit(name=publish_input_name).follow()
     # not available in django 1.7
     # article.refresh_from_db()
     article = Article.objects.get(pk=article.pk)
-    assert publish_input_name not in dict(changelist.form.fields)
-    assert unpublish_input_name in dict(changelist.form.fields)
+    assert publish_input_name not in dict(changelist.forms['changelist-form'].fields)
+    assert unpublish_input_name in dict(changelist.forms['changelist-form'].fields)
     assert UnPublishActionsMixin.publish.call_count == 1
     assert article.status == Article.PUBLISHED
 
     # execute and test unpublish action
-    changelist = changelist.form.submit(name=unpublish_input_name).follow()
+    changelist = changelist.forms['changelist-form'].submit(name=unpublish_input_name).follow()
     # article.refresh_from_db()
     article = Article.objects.get(pk=article.pk)
-    assert publish_input_name in dict(changelist.form.fields)
-    assert unpublish_input_name not in dict(changelist.form.fields)
+    assert publish_input_name in dict(changelist.forms['changelist-form'].fields)
+    assert unpublish_input_name not in dict(changelist.forms['changelist-form'].fields)
     assert UnPublishActionsMixin.unpublish.call_count == 1
     assert article.status == Article.DRAFT
 
@@ -147,7 +147,7 @@ def test_view_action(admin_client, mocker, article):
     input_name = '_action__articleadmin__admin__view_action__blog__article__{}'.format(
         article.pk
     )
-    response = changeview.form.submit(name=input_name).follow()
+    response = changeview.forms['changelist-form'].submit(name=input_name).follow()
     assert ViewAction.view_action.call_count == 1
     article_change_url = reverse('admin:blog_article_change', args=(article.pk,))
     assert response.request.path == article_change_url
